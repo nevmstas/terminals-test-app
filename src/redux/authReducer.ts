@@ -1,11 +1,10 @@
 export const SET_USER_DATA = 'AUTH/SET_USER_DATA'
-export const SHOW_NOT_FOUND_ALERT = 'AUTH/SHOW_NOT_FOUND_ALERT'
-export const HIDE_NOT_FOUND_ALERT = 'AUTH/HIDE_NOT_FOUND_ALERT'
+export const ADD_ERROR = 'AUTH/ADD_ERROR'
 
 export type initialStateType = {
     user: authorizedUserT
     isAuth: boolean
-    notFound: boolean
+    error: string
 }
 
 export type authorizedUserT = {
@@ -21,7 +20,7 @@ const InitialState: initialStateType= {
         avatarUrl: ''
     },
     isAuth: false,
-    notFound: false
+    error:''
 }
 
 export const authReducer = (state = InitialState, action: any) : initialStateType =>{
@@ -32,16 +31,11 @@ export const authReducer = (state = InitialState, action: any) : initialStateTyp
                 user: action.payload,
                 isAuth: true
             }
-        case SHOW_NOT_FOUND_ALERT:
+        case ADD_ERROR:
             return{
                 ...state,
-                notFound: true
+                error: action.payload
             }
-        case HIDE_NOT_FOUND_ALERT:
-            return{
-                ...state,
-                notFound: false
-            }  
         default:
             return state
     }
@@ -58,14 +52,10 @@ export const setUserData = (user : authorizedUserT) : setUserDataAT =>{
         payload: user
     }
 }
-export const showNotFoundAlert = ()  =>{
-    return {
-        type: SHOW_NOT_FOUND_ALERT,
-    }
-}
 
-export const hideNotFoundAlert = ()  =>{
-    return {
-        type: HIDE_NOT_FOUND_ALERT,
+export const addError = (error : string) =>{
+    return{
+        type: ADD_ERROR,
+        payload: error
     }
 }

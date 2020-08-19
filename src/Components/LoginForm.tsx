@@ -1,8 +1,8 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-import { authorizedUserT } from '../redux/authReducer';
-import { useSelector }from 'react-redux'
+import { authorizedUserT, addError } from '../redux/authReducer';
+import { useSelector, useDispatch }from 'react-redux'
 import { RootState } from '../redux/rootReducer';
 
 const SignupSchema = Yup.object().shape({
@@ -20,8 +20,9 @@ type PropsType = {
 }
 
 export const LoginForm: React.FC<PropsType> = ({ onLogin }) => {
+    const error = useSelector(( state: any ) => state.auth.error)
+    const dispatch = useDispatch()
 
-    const notFound = useSelector<RootState>(state => state.auth.notFound)
     const formik = useFormik({
         initialValues: {
             login: '',
@@ -31,14 +32,17 @@ export const LoginForm: React.FC<PropsType> = ({ onLogin }) => {
         onSubmit: async (values, actions) => {
             let response = await fetch(`https://api.github.com/users/${values.login}`);
             let data = await response.json();
-
-            const userData : authorizedUserT = {
-                userId: data.id,
-                userLogin: data.login,
-                avatarUrl: data.avatar_url
+            if(data.id !== undefined){
+                const userData : authorizedUserT = {
+                    userId: data.id,
+                    userLogin: data.login,
+                    avatarUrl: data.avatar_url
+                }
+                onLogin(userData)
+            }else{
+                dispatch(addError(data.message))  
             }
             actions.resetForm()
-            onLogin(userData)
             alert(JSON.stringify(data, null, 2))  
         }
     })
@@ -63,9 +67,9 @@ export const LoginForm: React.FC<PropsType> = ({ onLogin }) => {
                     value={formik.values.password}
                 />
                 {formik.errors.password && <h3>{formik.errors.password}</h3>}
+                {error && <h3>{error}</h3>}
                 <button type="submit">Login</button>
             </form>
-            {notFound && <h1>User not found</h1>}
         </div>
     )
     
