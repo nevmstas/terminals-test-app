@@ -59,3 +59,18 @@ export const addError = (error : string) =>{
         payload: error
     }
 }
+
+export const authUser = (userName: string) => async (dispatch : any)=>{
+    let response = await fetch(`https://api.github.com/users/${userName}`);
+    let data = await response.json();
+        if(data.id !== undefined){
+            const userData : authorizedUserT = {
+                userId: data.id,
+                userLogin: data.login,
+                avatarUrl: data.avatar_url
+            }
+            dispatch(setUserData(userData))
+        }else{
+            dispatch(addError(data.message))  
+        }
+} 

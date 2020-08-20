@@ -16,12 +16,12 @@ const SignupSchema = Yup.object().shape({
   });
 
 type PropsType = {
-    onLogin: (userData : authorizedUserT) => void
+    onLogin: (userName : string) => void
+    error: string
 }
 
-export const LoginForm: React.FC<PropsType> = ({ onLogin }) => {
-    const error = useSelector(( state: any ) => state.auth.error)
-    const dispatch = useDispatch()
+export const LoginForm: React.FC<PropsType> = ({ onLogin, error }) => {
+    
 
     const formik = useFormik({
         initialValues: {
@@ -29,21 +29,9 @@ export const LoginForm: React.FC<PropsType> = ({ onLogin }) => {
             password: ''
         },
         validationSchema: SignupSchema,
-        onSubmit: async (values, actions) => {
-            let response = await fetch(`https://api.github.com/users/${values.login}`);
-            let data = await response.json();
-            if(data.id !== undefined){
-                const userData : authorizedUserT = {
-                    userId: data.id,
-                    userLogin: data.login,
-                    avatarUrl: data.avatar_url
-                }
-                onLogin(userData)
-            }else{
-                dispatch(addError(data.message))  
-            }
+        onSubmit: (values, actions) => {
+            onLogin(values.login)
             actions.resetForm()
-            alert(JSON.stringify(data, null, 2))  
         }
     })
     

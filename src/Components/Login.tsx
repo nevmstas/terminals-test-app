@@ -1,18 +1,19 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { LoginForm } from './LoginForm'
-import { authorizedUserT, setUserData, addError } from '../redux/authReducer'
+import { authUser } from '../redux/authReducer'
 
 
 
 export const Login = () =>{
     const dispatch = useDispatch()
+    const error = useSelector(( state: any ) => state.auth.error)
     
-    const onLogin = (userData : authorizedUserT) => {
-        dispatch(setUserData(userData))
+    const onLogin = (userName : string) => {
+        dispatch(authUser(userName))
     }
     
     return (
-        <LoginForm onLogin = {onLogin}/>
+        <LoginForm onLogin = {onLogin} error = {error}/>
     )
 }
