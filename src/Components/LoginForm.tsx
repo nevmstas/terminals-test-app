@@ -1,9 +1,6 @@
 import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
-import { authorizedUserT, addError } from '../redux/authReducer';
-import { useSelector, useDispatch }from 'react-redux'
-import { RootState } from '../redux/rootReducer';
 
 const SignupSchema = Yup.object().shape({
     login: Yup.string()
@@ -21,8 +18,6 @@ type PropsType = {
 }
 
 export const LoginForm: React.FC<PropsType> = ({ onLogin, error }) => {
-    
-
     const formik = useFormik({
         initialValues: {
             login: '',

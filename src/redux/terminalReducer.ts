@@ -18,12 +18,13 @@ const InitialState: initialStateType= {
     ]
 }
 
-export const authReducer = (state = InitialState, action: any) : initialStateType =>{
+export const terminalReducer = (state = InitialState, action: any) : initialStateType =>{
+    debugger
     switch (action.type) {
         case ADD_TERMINAL:     
             return {
                 ...state,
-                terminals: [...state.terminals, ...action.payload]
+                terminals: [...state.terminals, action.payload]
             }
         case DELETE_TERMINAL:
             return{
@@ -32,5 +33,19 @@ export const authReducer = (state = InitialState, action: any) : initialStateTyp
             }
         default:
             return state
+    }
+}
+
+export const addTerminal = (terminal : Terminal) =>{
+    return {
+        type: ADD_TERMINAL,
+        payload: terminal
+    }
+}
+
+export const deleteTerminal = (id : number) =>{
+    return {
+        type: DELETE_TERMINAL,
+        payload: id
     }
 }

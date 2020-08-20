@@ -3,6 +3,7 @@ import './App.css';
 import { Login } from './Components/Login'
 import { useSelector } from 'react-redux'
 import { RootState } from './redux/rootReducer';
+import { Terminals } from './Components/Terminals';
 
 function App() {
   
@@ -15,7 +16,7 @@ function App() {
     <div>
       {/* <Login /> */}
       {isAuth? <img alt='avatar' src={`${user.avatarUrl}`} />:<Login />}
-      Terminals
+      <Terminals />
     </div>
   );
 }
