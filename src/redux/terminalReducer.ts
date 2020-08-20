@@ -19,7 +19,6 @@ const InitialState: initialStateType= {
 }
 
 export const terminalReducer = (state = InitialState, action: any) : initialStateType =>{
-    debugger
     switch (action.type) {
         case ADD_TERMINAL:     
             return {

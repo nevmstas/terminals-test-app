@@ -23,7 +23,7 @@ export const Terminals = () => {
             <TerminalForm onAdd={onAdd}/>
 
             {terminalsList.map((t : Terminal, index: number)  => {
-                return <div key = {index}><a href='#'>{t.id}</a>{t.name + ' ' + t.description} <button onClick={()=>{onRemove(t.id)}}>Remove</button></div>
+                return <div key = {index}>{t.name + ' ' + t.description} <button onClick={()=>{onRemove(t.id)}}>Remove</button></div>
             })}
 
         </div>
