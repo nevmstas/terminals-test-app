@@ -1,6 +1,7 @@
 export const SORT_BY_AVERAGE_CHECK = 'BUYERS/SORT_BY_AVERAGE_CHECK'
 export const SORT_BY_PURCHASES = 'BUYERS/SORT_BY_PURCHASES'
 export const SORT_BY_TOTAL_REVENUES = 'BUYERS/SORT_BY_TOTAL_REVENUES'
+export const FILTER_BY_NAME = 'BUYERS/FILTER_BY_NAME'
 
 export type Buyer = {
     id: number
@@ -10,14 +11,15 @@ export type Buyer = {
     totalRevenues: number
 }
 export type initialStateType = {
-    buyers: Array<Buyer>
+    buyers: Array<Buyer>,
+    filteredItems: Array<Buyer> 
 }
 
 const InitialState: initialStateType= {
     buyers: [
         {id: 1, name: 'John', averageCheck: 100, purchases: 3, totalRevenues: 2000},
         {id: 2, name: 'Bob', averageCheck: 200, purchases: 2, totalRevenues: 2000},
-        {id: 3, name: 'John', averageCheck: 300, purchases: 3, totalRevenues: 7200},
+        {id: 3, name: 'Jobn', averageCheck: 300, purchases: 3, totalRevenues: 7200},
         {id: 4, name: 'Sandy', averageCheck: 400, purchases: 1, totalRevenues: 2700},
         {id: 5, name: 'Patrik', averageCheck: 500, purchases: 10, totalRevenues: 8800},
         {id: 6, name: 'Fin', averageCheck: 200, purchases: 11, totalRevenues: 6500},
@@ -29,7 +31,8 @@ const InitialState: initialStateType= {
         {id: 12, name: 'John', averageCheck: 80, purchases: 2, totalRevenues: 1010},
         {id: 13, name: 'Luci', averageCheck: 850, purchases: 1, totalRevenues: 2020},
         {id: 14, name: 'Jack', averageCheck: 555, purchases: 8, totalRevenues: 6090},
-    ]
+    ],
+    filteredItems:[]
 }
 
 export const buyersReducer = (state = InitialState, action: any) : initialStateType =>{
@@ -48,7 +51,12 @@ export const buyersReducer = (state = InitialState, action: any) : initialStateT
             return{
                 ...state,
                 buyers:[...state.buyers.sort((a, b) => a.totalRevenues - b.totalRevenues)]
-            }    
+            }  
+        case FILTER_BY_NAME:
+            return{
+                ...state,
+                filteredItems: [...state.buyers.filter(b => b.name.toUpperCase().startsWith(action.payload.toUpperCase()))]
+            }  
         default:
             return state
     }
@@ -69,6 +77,13 @@ export const sortByPurchases = () =>{
 export const sortByTotalRevenues = () =>{
     return {
         type: SORT_BY_TOTAL_REVENUES
+    }
+}
+
+export const filterByName = (text: string ) => {
+    return {
+        type: FILTER_BY_NAME,
+        payload: text
     }
 }
 

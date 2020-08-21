@@ -5,6 +5,11 @@ import { useSelector } from 'react-redux'
 import { RootState } from './redux/rootReducer';
 import { Terminals } from './Components/Terminals';
 import { Buyers } from './Components/Buyers';
+import { Sidebar } from './Components/Sidebar'
+
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Buyer } from './Components/Buyer';
+
 
 function App() {
   
@@ -12,12 +17,18 @@ function App() {
   const isAuth = useSelector<RootState>(state => state.auth.isAuth)
 
   return (
-    <div>
-      {/* <Login /> */}
-      {isAuth? <img alt='avatar' src={`${user.avatarUrl}`} />:<Login />}
-      <Terminals />
-      <Buyers />
-    </div>
+    <Router>
+      <div>
+        {isAuth? 
+          <div>
+            <Sidebar img = {user.avatarUrl}/>
+            <Route path="/terminals" component={Terminals} />
+            <Route path="/buyers" exact component={Buyers} />
+            <Route path="/buyers/:id" component={Buyer}/>
+          </div>
+      :<Login />}
+      </div>
+    </Router>
   );
 }
 
