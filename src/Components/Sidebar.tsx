@@ -22,6 +22,9 @@ export const Sidebar: React.FC<PropsT> = ({ img }) =>{
                 <li>
                 <Link to="/about">About</Link>
                 </li>
+                <li>
+                <Link to="/Customers">Customers</Link>
+                </li>
             </ul>
         </nav>
     )
