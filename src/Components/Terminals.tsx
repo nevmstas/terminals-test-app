@@ -5,12 +5,12 @@ import { Terminal, addTerminal, deleteTerminal } from '../redux/terminalReducer'
 import { TerminalForm } from './TerminalForm';
 
 export const Terminals = () => {
-    const terminalsList = useSelector(( state: any ) => state.terminal.terminals)
+    const terminalsList = useSelector(( state: RootState ) => state.terminal.terminals)
     const dispatch = useDispatch()
 
     const onAdd = ( name: string, desc: string ) =>{
+        //fake id for test
         const testId = terminalsList.length + 1
-
         dispatch(addTerminal({ id: testId, name, description: desc }))
     }
 

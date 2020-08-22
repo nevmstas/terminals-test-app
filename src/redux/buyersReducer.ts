@@ -1,7 +1,7 @@
 export const SORT_BY_AVERAGE_CHECK = 'BUYERS/SORT_BY_AVERAGE_CHECK'
 export const SORT_BY_PURCHASES = 'BUYERS/SORT_BY_PURCHASES'
 export const SORT_BY_TOTAL_REVENUES = 'BUYERS/SORT_BY_TOTAL_REVENUES'
-export const FILTER_BY_NAME = 'BUYERS/FILTER_BY_NAME'
+//export const FILTER_BY_NAME = 'BUYERS/FILTER_BY_NAME'
 
 export type Buyer = {
     id: number
@@ -12,7 +12,7 @@ export type Buyer = {
 }
 export type initialStateType = {
     buyers: Array<Buyer>,
-    filteredItems: Array<Buyer> 
+    //filteredItems: Array<Buyer> 
 }
 
 const InitialState: initialStateType= {
@@ -32,10 +32,12 @@ const InitialState: initialStateType= {
         {id: 13, name: 'Luci', averageCheck: 850, purchases: 1, totalRevenues: 2020},
         {id: 14, name: 'Jack', averageCheck: 555, purchases: 8, totalRevenues: 6090},
     ],
-    filteredItems:[]
+    //filteredItems:[]
 }
 
-export const buyersReducer = (state = InitialState, action: any) : initialStateType =>{
+type BuyersActionTypes = sortByAverageCheckT | sortByPurchasesT | sortByTotalRevenuesT
+
+export const buyersReducer = (state = InitialState, action: BuyersActionTypes) : initialStateType =>{
     switch (action.type) {
         case SORT_BY_AVERAGE_CHECK:
             return{
@@ -52,38 +54,50 @@ export const buyersReducer = (state = InitialState, action: any) : initialStateT
                 ...state,
                 buyers:[...state.buyers.sort((a, b) => a.totalRevenues - b.totalRevenues)]
             }  
-        case FILTER_BY_NAME:
-            return{
-                ...state,
-                filteredItems: [...state.buyers.filter(b => b.name.toUpperCase().startsWith(action.payload.toUpperCase()))]
-            }  
+        // case FILTER_BY_NAME:
+        //     return{
+        //         ...state,
+        //         filteredItems: [...state.buyers.filter(b => b.name.toUpperCase().startsWith(action.payload.toUpperCase()))]
+        //     }  
         default:
             return state
     }
 }
 
-export const sortByAverageCheck = () =>{
+type sortByAverageCheckT = {
+    type: typeof SORT_BY_AVERAGE_CHECK
+}
+
+export const sortByAverageCheck = () : sortByAverageCheckT =>{
     return {
         type: SORT_BY_AVERAGE_CHECK
     }
 }
 
-export const sortByPurchases = () =>{
+type sortByPurchasesT = {
+    type: typeof SORT_BY_PURCHASES
+}
+
+export const sortByPurchases = () : sortByPurchasesT =>{
     return {
         type: SORT_BY_PURCHASES
     }
 }
 
-export const sortByTotalRevenues = () =>{
+type sortByTotalRevenuesT = {
+    type: typeof SORT_BY_TOTAL_REVENUES
+}
+
+export const sortByTotalRevenues = () : sortByTotalRevenuesT =>{
     return {
         type: SORT_BY_TOTAL_REVENUES
     }
 }
 
-export const filterByName = (text: string ) => {
-    return {
-        type: FILTER_BY_NAME,
-        payload: text
-    }
-}
+// export const filterByName = (text: string ) => {
+//     return {
+//         type: FILTER_BY_NAME,
+//         payload: text
+//     }
+// }
 

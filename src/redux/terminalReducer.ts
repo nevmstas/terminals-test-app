@@ -10,7 +10,6 @@ export type initialStateType = {
     terminals: Array<Terminal>
 }
 
-
 const InitialState: initialStateType= {
     terminals: [
         {id: 1, name: 'Terminal-1', description: 'Simple'},
@@ -18,7 +17,9 @@ const InitialState: initialStateType= {
     ]
 }
 
-export const terminalReducer = (state = InitialState, action: any) : initialStateType =>{
+type TerminalActionType = AddTerminalT | DeleteTerminalT
+
+export const terminalReducer = (state = InitialState, action: TerminalActionType) : initialStateType =>{
     switch (action.type) {
         case ADD_TERMINAL:     
             return {
@@ -35,14 +36,24 @@ export const terminalReducer = (state = InitialState, action: any) : initialStat
     }
 }
 
-export const addTerminal = (terminal : Terminal) =>{
+type AddTerminalT = {
+    type: typeof ADD_TERMINAL,
+    payload: Terminal
+}
+
+export const addTerminal = (terminal : Terminal) : AddTerminalT =>{
     return {
         type: ADD_TERMINAL,
         payload: terminal
     }
 }
 
-export const deleteTerminal = (id : number) =>{
+type DeleteTerminalT = {
+    type: typeof DELETE_TERMINAL,
+    payload: number
+}
+
+export const deleteTerminal = (id : number) : DeleteTerminalT=>{
     return {
         type: DELETE_TERMINAL,
         payload: id

@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Buyer, sortByAverageCheck, sortByPurchases, sortByTotalRevenues, filterByName } from '../redux/buyersReducer'
+import { Buyer, sortByAverageCheck, sortByPurchases, sortByTotalRevenues } from '../redux/buyersReducer'
 import { Link } from 'react-router-dom'
+import { RootState } from '../redux/rootReducer'
 
 export const Buyers = () =>{
-    //const [name, setName] = useState('')
-    const buyersList = useSelector((state : any) => state.buyer.buyers)
-    const buyersListFil = useSelector((state : any) => state.buyer.filteredItems)
+    const [filter, setFilter] = useState<string>('')
+    const buyersList = useSelector((state : RootState) => state.buyer.buyers)
     const dispatch = useDispatch()
 
-    const handleInput = (event:any)=>{
-        //setName(event.target.value)
-        dispatch(filterByName(event.target.value))
+    const handleInput = (event:React.FormEvent<HTMLInputElement>)=>{
+        setFilter(event.currentTarget.value)
     }
+
     return (
         <div>
-            <input type='text' onChange={handleInput}/>
+            <input type='text' onChange={handleInput} value={filter}/>
             <button onClick ={()=>{dispatch(sortByAverageCheck())}}>sort by average</button>
             <button onClick ={()=>{dispatch(sortByPurchases())}}>sort by purchases</button>
             <button onClick ={()=>{dispatch(sortByTotalRevenues())}}>sort by total</button>
@@ -29,13 +29,14 @@ export const Buyers = () =>{
                     </tr>
                 </thead>
                 <tbody>
-                    {buyersListFil.map((b: Buyer) =>{
-                        return <tr key={b.id}>
+                    {buyersList.map((b: Buyer) =>{
+                        return b.name.toUpperCase().startsWith(filter.toUpperCase())?
+                            <tr key={b.id}>
                                 <td><Link to={`/buyers/${b.id}`}>{b.id}</Link></td>
                                 <td>{b.name}</td>
                                 <td>{b.purchases}</td>
                                 <td>{b.totalRevenues}</td>
-                            </tr>
+                            </tr> : null                   
                     })}
                 </tbody>
             </table>

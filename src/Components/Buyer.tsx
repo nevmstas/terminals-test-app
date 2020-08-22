@@ -10,7 +10,7 @@ export const Buyer = () =>{
     useEffect(() => {
         const buyer  = buyers.filter((b:any) => b.id === +id)
         setBuyer(buyer[0])
-    }, [id])
+    }, [buyers, id])
     
     return (
         <div>{buyer.name}</div>

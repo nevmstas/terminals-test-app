@@ -1,3 +1,7 @@
+import { RootState } from './rootReducer';
+import { Action } from 'redux'
+import { ThunkAction } from 'redux-thunk'
+
 export const SET_USER_DATA = 'AUTH/SET_USER_DATA'
 export const ADD_ERROR = 'AUTH/ADD_ERROR'
 
@@ -53,24 +57,35 @@ export const setUserData = (user : authorizedUserT) : setUserDataAT =>{
     }
 }
 
-export const addError = (error : string) =>{
+type addErrorT ={
+    type: typeof ADD_ERROR
+    payload: string
+}
+
+export const addError = (error : string) : addErrorT =>{
     return{
         type: ADD_ERROR,
         payload: error
     }
 }
 
-export const authUser = (userName: string) => async (dispatch : any)=>{
-    let response = await fetch(`https://api.github.com/users/${userName}`);
-    let data = await response.json();
-        if(data.id !== undefined){
-            const userData : authorizedUserT = {
-                userId: data.id,
-                userLogin: data.login,
-                avatarUrl: data.avatar_url
+export const authUser = ( 
+    userName: string 
+) : ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
+    try{
+        let response = await fetch(`https://api.github.com/users/${userName}`);
+        let data = await response.json();
+            if(data.id !== undefined){
+                const userData : authorizedUserT = {
+                    userId: data.id,
+                    userLogin: data.login,
+                    avatarUrl: data.avatar_url
+                }
+                dispatch(setUserData(userData))
+            }else{
+                dispatch(addError(data.message))  
             }
-            dispatch(setUserData(userData))
-        }else{
-            dispatch(addError(data.message))  
-        }
+    }catch(e){
+        dispatch(addError(e))  
+    }
 } 

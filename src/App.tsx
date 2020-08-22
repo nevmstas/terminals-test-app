@@ -7,12 +7,10 @@ import { Terminals } from './Components/Terminals';
 import { Buyers } from './Components/Buyers';
 import { Sidebar } from './Components/Sidebar'
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Buyer } from './Components/Buyer';
 
-
-function App() {
-  
+function App() { 
   const user = useSelector(( state : any ) => state.auth.user)
   const isAuth = useSelector<RootState>(state => state.auth.isAuth)
 
