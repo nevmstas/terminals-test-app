@@ -9,7 +9,10 @@ export const Sidebar: React.FC<PropsT> = ({ img }) =>{
     return (
         <nav>
             <img alt='gh-avatar' src={img} />
-            <ul>              
+            <ul>
+                <li>
+                <Link to="/">Home</Link>
+                </li>            
                 <li>
                 <Link to="/terminals">Terminal</Link>
                 </li>
@@ -17,13 +20,7 @@ export const Sidebar: React.FC<PropsT> = ({ img }) =>{
                 <Link to="/buyers">Buyer</Link>
                 </li>
                 <li>
-                <Link to="/contacts">Contacts</Link>
-                </li>
-                <li>
                 <Link to="/about">About</Link>
-                </li>
-                <li>
-                <Link to="/Customers">Customers</Link>
                 </li>
             </ul>
         </nav>
