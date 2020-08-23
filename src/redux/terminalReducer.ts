@@ -1,13 +1,13 @@
 export const ADD_TERMINAL = 'TERMINAL/ADD_TERMINAL'
 export const DELETE_TERMINAL = 'TERMINAL/DELETE_TERMINAL'
 
-export type Terminal = {
+export type TerminalT = {
     id: number
     name: string 
     description: string
 }
 export type initialStateType = {
-    terminals: Array<Terminal>
+    terminals: Array<TerminalT>
 }
 
 const InitialState: initialStateType= {
@@ -38,10 +38,10 @@ export const terminalReducer = (state = InitialState, action: TerminalActionType
 
 type AddTerminalT = {
     type: typeof ADD_TERMINAL,
-    payload: Terminal
+    payload: TerminalT
 }
 
-export const addTerminal = (terminal : Terminal) : AddTerminalT =>{
+export const addTerminal = (terminal : TerminalT) : AddTerminalT =>{
     return {
         type: ADD_TERMINAL,
         payload: terminal

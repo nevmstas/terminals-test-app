@@ -8,8 +8,6 @@ import { SignupSchema } from './SingupSchema'
 
 import * as s from './styles'
 
-
-
 type PropsType = {
     onLogin: (userName : string) => void
     error: string
