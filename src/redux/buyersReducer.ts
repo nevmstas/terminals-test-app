@@ -11,8 +11,7 @@ export type Buyer = {
     totalRevenues: number
 }
 export type initialStateType = {
-    buyers: Array<Buyer>,
-    //filteredItems: Array<Buyer> 
+    buyers: Array<Buyer>
 }
 
 const InitialState: initialStateType= {
@@ -31,8 +30,8 @@ const InitialState: initialStateType= {
         {id: 12, name: 'John', averageCheck: 80, purchases: 2, totalRevenues: 1010},
         {id: 13, name: 'Luci', averageCheck: 850, purchases: 1, totalRevenues: 2020},
         {id: 14, name: 'Jack', averageCheck: 555, purchases: 8, totalRevenues: 6090},
-    ],
-    //filteredItems:[]
+        {id: 15, name: 'Ron', averageCheck: 654, purchases: 2, totalRevenues: 5344},
+    ]
 }
 
 type BuyersActionTypes = sortByAverageCheckT | sortByPurchasesT | sortByTotalRevenuesT
@@ -54,11 +53,6 @@ export const buyersReducer = (state = InitialState, action: BuyersActionTypes) :
                 ...state,
                 buyers:[...state.buyers.sort((a, b) => a.totalRevenues - b.totalRevenues)]
             }  
-        // case FILTER_BY_NAME:
-        //     return{
-        //         ...state,
-        //         filteredItems: [...state.buyers.filter(b => b.name.toUpperCase().startsWith(action.payload.toUpperCase()))]
-        //     }  
         default:
             return state
     }
@@ -93,11 +87,4 @@ export const sortByTotalRevenues = () : sortByTotalRevenuesT =>{
         type: SORT_BY_TOTAL_REVENUES
     }
 }
-
-// export const filterByName = (text: string ) => {
-//     return {
-//         type: FILTER_BY_NAME,
-//         payload: text
-//     }
-// }
 

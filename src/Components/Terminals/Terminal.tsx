@@ -17,17 +17,17 @@ export const Terminal: React.FC<TProps> = ({id, name, description, onRemove}) =>
         display: flex;
         justify-content: space-between;
         border-radius: 3px;
-        box-shadow: 0 0 5px black;
+        box-shadow: 0 0 2px black;
         margin: 20px 20px;
         padding: 30px;
         img{
             cursor: pointer;
-            width: 50px;
+            height: 70px;
         }
     `}>
         <div>
-            <h3>{name}</h3>
-            <h4>{description}</h4>
+            <h3><b>Name:</b> {name}</h3>
+            <h4><b>Description:</b> {description}</h4>
         </div>
         <img src={deleteImg} onClick={() => onRemove(id)}/>
     </div>
