@@ -43,10 +43,15 @@ export const Buyers = () =>{
                 margin: 20px 0 20px;
                 button{
                     margin-top: 20px;
-                    padding: 5px;
                     background-color: blueviolet;
+                    border-radius: 10px;
                     color: white;
+                    padding: 10px;
                     border: none;
+                    &:hover{
+                        background-color: #b152ff;
+                        cursor: pointer;
+                    }       
                 }
             `}>
                 <input className={"form-control"} type="text" placeholder="Search by name" onChange={handleInput} value={filter}/>

@@ -25,13 +25,14 @@ export const Terminals = () => {
 
     return (
         <div>
+            <h1>Terminals page</h1>
             <TerminalForm onAdd={onAdd}/>
-
-            {terminalsList.map((t : TerminalT, index: number)  => {
-                // return <div key = {index}>{t.name + ' ' + t.description} <button onClick={()=>{onRemove(t.id)}}>Remove</button></div>
-                return <Terminal key = {index} id ={t.id} name = {t.name} description = {t.description} onRemove= {onRemove} />
-            })}
-
+            <div>
+                {terminalsList.map((t : TerminalT, index: number)  => {
+                    // return <div key = {index}>{t.name + ' ' + t.description} <button onClick={()=>{onRemove(t.id)}}>Remove</button></div>
+                    return <Terminal key = {index} id ={t.id} name = {t.name} description = {t.description} onRemove= {onRemove} />
+                })}
+            </div>
         </div>
     ) 
 }

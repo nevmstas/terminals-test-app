@@ -30,6 +30,9 @@ export const navigation = css`
       transform: translateX(10px);
       text-decoration-line: 1px;
     }
+    &:active{
+      color: hotpink;
+    }
   }
   img {
     width: 10rem;

@@ -20,7 +20,6 @@ export const page = css`
   align-items: center;
   margin-left: 300px;
   height: 100%;
-  border: 1px solid red;
   @media screen and (max-width: 1200px) {
     justify-content: center;
     margin-left: 0;
