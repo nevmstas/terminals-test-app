@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/terminals-test-app/static/css/main.27fd15f6.chunk.css",
+    "main.js": "/terminals-test-app/static/js/main.2e34599c.chunk.js",
+    "main.js.map": "/terminals-test-app/static/js/main.2e34599c.chunk.js.map",
+    "runtime-main.js": "/terminals-test-app/static/js/runtime-main.c1c33527.js",
+    "runtime-main.js.map": "/terminals-test-app/static/js/runtime-main.c1c33527.js.map",
+    "static/js/2.7a389f05.chunk.js": "/terminals-test-app/static/js/2.7a389f05.chunk.js",
+    "static/js/2.7a389f05.chunk.js.map": "/terminals-test-app/static/js/2.7a389f05.chunk.js.map",
+    "index.html": "/terminals-test-app/index.html",
+    "precache-manifest.deefd01ad704a2d9a2167860a9f9ae4a.js": "/terminals-test-app/precache-manifest.deefd01ad704a2d9a2167860a9f9ae4a.js",
+    "service-worker.js": "/terminals-test-app/service-worker.js",
+    "static/css/main.27fd15f6.chunk.css.map": "/terminals-test-app/static/css/main.27fd15f6.chunk.css.map",
+    "static/js/2.7a389f05.chunk.js.LICENSE.txt": "/terminals-test-app/static/js/2.7a389f05.chunk.js.LICENSE.txt",
+    "static/media/deleteBtn.png": "/terminals-test-app/static/media/deleteBtn.ced2c2f9.png",
+    "static/media/ghicon.webp": "/terminals-test-app/static/media/ghicon.bbd7ea09.webp"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c1c33527.js",
+    "static/js/2.7a389f05.chunk.js",
+    "static/css/main.27fd15f6.chunk.css",
+    "static/js/main.2e34599c.chunk.js"
+  ]
+}
