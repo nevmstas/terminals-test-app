@@ -1,4 +1,5 @@
 import * as reducer from '../terminalReducer'
+import { Terminal } from '../../Components/Terminals/Terminal'
 
 describe('actions', () => {
     it('should create an action to add a terminal', () => {
@@ -23,5 +24,7 @@ describe('actions', () => {
       expect(reducer.deleteTerminal(id)).toEqual(expectedAction)
     })
   })
+
+
 
   
