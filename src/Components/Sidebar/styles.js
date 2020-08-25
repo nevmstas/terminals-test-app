@@ -1,14 +1,13 @@
 import { css } from "@emotion/core";
 
 export const navigation = css`
+  display: flex;
   margin: 0;
   padding: 0;
-  background: blueviolet;
-  justify-content: center;
-  align-items: center;
+  background: linear-gradient(blueviolet 60%, hotpink);
   flex-direction: column;
   list-style: none;
-  font-size: 40px;
+  font-size: 30px;
   width: 300px;
   height: 100%;
   position: fixed;
@@ -18,6 +17,15 @@ export const navigation = css`
     height: auto;
     position: relative;
     text-align: center;
+    img{
+      align-self:center;
+    }
+  }
+  li{
+    transition: all .3s;
+    &:hover{
+      background-color:#b152ff;
+    }
   }
   a {
     margin-left: 20px;
@@ -26,15 +34,12 @@ export const navigation = css`
     text-decoration: none;
     color: white;
     transition: all 0.2s;
-    &:hover {
-      transform: translateX(10px);
-      text-decoration-line: 1px;
-    }
     &:active{
       color: hotpink;
     }
   }
   img {
+
     width: 10rem;
     margin-left: 20px;
     margin-top: 20px;
@@ -43,8 +48,9 @@ export const navigation = css`
 `;
 
 export const footer = css`
-    bottom: 10px;
-    border: 1px solid black;
-    align-self: flex-end;
+    background-color: black;
+    padding: 10px;
+    color: white;
+    margin-top: auto;
 `;
 

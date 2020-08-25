@@ -11,28 +11,39 @@ type PropsT = {
 }
 
 export const Sidebar: React.FC<PropsT> = ({ img }) =>{
+    const location = useLocation()
     return (
         <nav css ={s.navigation}>
             <img alt='gh-avatar' src={img} />
-            <div>
                 <ul>
                     <li>
-                        <NavLink to="/" activeClassName={"active"}>Home</NavLink>
+                        <NavLink exact to="/" activeStyle={{
+                            color: "hotpink"
+                        }}>Home</NavLink>
                     </li>   
                     <li>
-                        <NavLink to="/buyers" activeClassName={"active"}>Buyer</NavLink>
+                        <NavLink to="/buyers" activeStyle={{
+                            color: "hotpink"
+                        }}>Buyer</NavLink>
                     </li>         
                     <li>
-                        <NavLink to="/terminals" activeClassName={"active"}>Terminal</NavLink>
+                        <NavLink to="/terminals" activeStyle={{
+                            color: "hotpink"
+                        }}>Terminal</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/about" activeClassName={"active"}>About</NavLink>
+                        <NavLink to="/test" activeStyle={{
+                            fontWeight: "bold",
+                            color: "hotpink"
+                        }}>Test</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/test" activeClassName={"active"}>Test</NavLink>
+                        <NavLink to="/test2" activeStyle={{
+                            fontWeight: "bold",
+                            color: "hotpink"
+                        }}>Test2</NavLink>
                     </li>
                 </ul>
-            </div>
             <div css = {s.footer}>
                 Copyright @2020
             </div>

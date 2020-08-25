@@ -2,7 +2,7 @@ import * as reducer from '../terminalReducer'
 
 describe('actions', () => {
     it('should create an action to add a terminal', () => {
-      const terminal : reducer.Terminal = {
+      const terminal : reducer.TerminalT = {
           id: 1,
           name: 'terminal-1',
           description: 'simple'
@@ -12,6 +12,15 @@ describe('actions', () => {
         payload: terminal
       }
       expect(reducer.addTerminal(terminal)).toEqual(expectedAction)
+    })
+
+    it('should create an action to delete a terminal', () => {
+      const id : number = 1
+      const expectedAction = {
+        type: reducer.DELETE_TERMINAL,
+        payload: id
+      }
+      expect(reducer.deleteTerminal(id)).toEqual(expectedAction)
     })
   })
 

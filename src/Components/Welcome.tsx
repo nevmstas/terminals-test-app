@@ -7,7 +7,8 @@ import { css, jsx } from '@emotion/core'
 
 export const Welcome = () =>{
     return <div css={css`
-        margin-top: 30px;
+        text-align: center;     
+        margin-top: 20px;
         h1{
             color: blueviolet;
             b{
@@ -16,6 +17,7 @@ export const Welcome = () =>{
         }
         img{
             width: 50px;
+            margin-bottom: 20px;
         }
     `}><h1><a href='https://github.com/nevmstas'><img src={ghIcon} /> <b>https://github.com/nevmstas</b></a></h1></div>
 }
