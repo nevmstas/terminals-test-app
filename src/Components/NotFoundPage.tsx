@@ -32,7 +32,7 @@ export const NotFoundPage = () => {
                 text-align: center;
             `}>
                 <h1>Whoops!</h1>
-                <img src={rickImg}/>
+                <img alt="rick" src={rickImg}/>
                 <h1>Path <b>{loaction.pathname}</b> not found!</h1>
                 <div css= {css`
                     border-radius: 20px;

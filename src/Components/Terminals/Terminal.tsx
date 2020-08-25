@@ -29,6 +29,6 @@ export const Terminal: React.FC<TProps> = ({id, name, description, onRemove}) =>
             <h3><b>Name:</b> {name}</h3>
             <h4><b>Description:</b> {description}</h4>
         </div>
-        <img src={deleteImg} onClick={() => onRemove(id)}/>
+        <img alt="deleteBtn" src={deleteImg} onClick={() => onRemove(id)}/>
     </div>
 }

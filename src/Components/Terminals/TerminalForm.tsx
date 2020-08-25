@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFormik } from 'formik';
-import  plusImg  from '../../imgs/lulu-plus.png'
 
 // this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
 /** @jsx jsx */
